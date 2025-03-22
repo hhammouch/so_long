@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 00:04:25 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/22 01:18:05 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/22 02:52:43 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,39 @@ void	map_rendder(t_game *game)
 		}
 		y++;
 	}
+}
+int	close_game(t_game *game)
+{
+	if (game->wall)
+		mlx_destroy_image(game->mlx, game->wall);
+	if (game->player)
+		mlx_destroy_image(game->mlx, game->player);
+	if (game->collectible)
+		mlx_destroy_image(game->mlx, game->collectible);
+	if (game->exit)
+		mlx_destroy_image(game->mlx, game->exit);
+	if (game->map)
+		free_map(game->map);
+	if (game->win)
+		mlx_destroy_window(game->mlx, game->win);
+	exit(EXIT_SUCCESS);
+}
+int	handle_keypress(int key, t_game *game)
+{
+	if (key == 53)
+		close_game(game);
+	else if (key == 123)
+		move_player(game, game->player_x - 1, game->player_y);
+	else if (key == 124)
+		move_player(game, game->player_x + 1, game->player_y);
+	else if (key == 126)
+		move_player(game, game->player_x, game->player_y - 1);
+	else if (key == 125)
+		move_player(game, game->player_x, game->player_y + 1);
+	return (0);
+}
+void	handle_events(t_game *game)
+{
+	mlx_hook(game->win, 2, 1L << 0, handle_keypress, game);
+	mlx_hook(game->win, 17, 0L << 0, close_game, game);
 }

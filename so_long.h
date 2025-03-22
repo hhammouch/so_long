@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 03:51:40 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/22 01:06:31 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/22 03:07:15 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "get_next_line/get_next_line_bonus.h"
 # include "libft/libft.h"
 # include "mlx/mlx.h"
-# include <mlx.h>
+
 
 typedef	struct so_game
 {
@@ -60,5 +60,10 @@ void	player_position(t_game *game);
 void	load_textures(t_game *game);
 void	map_rendder(t_game *game);
 void	load_textures(t_game *game);
+void	handle_events(t_game *game);
+int		close_game(t_game *game);
+int		handle_keypress(int key, t_game *game);
+void	move_player(t_game *game, int new_x, int new_y);
+
 
 #endif

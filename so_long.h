@@ -1,0 +1,64 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/15 03:51:40 by hhammouc          #+#    #+#             */
+/*   Updated: 2025/03/22 01:06:31 by hhammouc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef SO_LONG_H
+# define SO_LONG_H
+
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include "ft_printf/ft_printf.h"
+# include "get_next_line/get_next_line_bonus.h"
+# include "libft/libft.h"
+# include "mlx/mlx.h"
+# include <mlx.h>
+
+typedef	struct so_game
+{
+	char	**map;
+	void	*mlx;
+	void	*win;
+	void	*wall;
+	void	*player;
+	void	*collectible;
+	void	*exit;
+	void	*empty;
+	int		tile_size;
+	int		map_width;
+	int		map_height;
+	int		moves;
+	int		player_x;
+	int		player_y;
+	int		collectibles;
+	
+}	t_game;
+
+
+void	print_error(char *msg);
+char	**read_map(const char *file_path);
+char	*read_file(int fd);
+void	path_check(char *path);
+int		is_wall(const char *line);
+void	valid_map(char **map);
+void	components_check(char **map);
+void	components_count(char **map, int *c_count, int *p_count, int *e_count);
+int		is_path_accessible(char **map, int y, int x, int itemes);
+void	free_map(char **map);
+void	init_game(t_game *game);
+void	count_collectibles(t_game *game);
+void	player_position(t_game *game);
+void	load_textures(t_game *game);
+void	map_rendder(t_game *game);
+void	load_textures(t_game *game);
+
+#endif

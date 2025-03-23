@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 22:39:42 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/21 20:54:25 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/22 23:56:41 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	components_check(char **map)
 	if (exit_count != 1)
 		print_error("Map must have exactly one exit (E)");
 }
+
 int	is_wall(const char *line)
 {
 	int	i;
@@ -84,14 +85,10 @@ void	valid_map(char **map)
 	i = 0;
 	while (map[i])
 	{
-		if (i == 0 && !is_wall(map[i]))
-			print_error("Top row is not properly enclosed by walls ('1').");
-		if (map[i + 1] == NULL && !is_wall(map[i]))
-			print_error("Bottom row is not properly enclosed by walls ('1').");
-		if (map[i][0] != '1')
-			print_error("Left side wall is missing at row index");
-		if (map[i][row_len - 1] != '1')
-			print_error("Right side wall is missing at row index");
+		if ((i == 0 || map[i + 1] == NULL) && !is_wall(map[i]))
+			print_error("Top  or Bottom row is not properly enclosed by walls");
+		if (map[i][0] != '1' || map[i][row_len - 1] != '1')
+			print_error("Left or Right side wall is missing at row index");
 		i++;
 	}
 	components_check(map);

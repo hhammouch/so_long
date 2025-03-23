@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 23:20:47 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/22 00:28:14 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/23 00:09:10 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ void	init_game(t_game *game)
 		print_error("Failed to create a game window.");
 	load_textures(game);
 	map_rendder(game);
+	handle_events(game);
 	mlx_loop(game->mlx);
-	
 }

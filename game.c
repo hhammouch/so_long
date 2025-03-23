@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 00:04:25 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/22 02:52:43 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/22 23:51:05 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,36 +15,36 @@
 void	load_textures(t_game *game)
 {
 	int	size;
-	
+
 	size = game->tile_size;
 	game->wall = mlx_xpm_file_to_image(game->mlx, "rec/wall.xpm", &size, &size);
-	game->player = mlx_xpm_file_to_image(game->mlx, "rec/player.xpm", &size, &size);
-	game->collectible = mlx_xpm_file_to_image(game->mlx, "rec/collectible.xpm",&size, &size);
-	game->exit = mlx_xpm_file_to_image(game->mlx, "rec/exit.xpm", &size, &size);
-	game->empty = mlx_xpm_file_to_image(game->mlx, "rec/empty.xpm", &size,&size);
-	if (!game->wall || !game->empty || !game->player || !game->exit || !game->collectible)
+	game->player = mlx_xpm_file_to_image(game->mlx, "rec/player.xpm",
+			&size, &size);
+	game->collectible = mlx_xpm_file_to_image(game->mlx, "rec/collectible.xpm",
+			&size, &size);
+	game->exit = mlx_xpm_file_to_image(game->mlx, "rec/exit.xpm",
+			&size, &size);
+	game->empty = mlx_xpm_file_to_image(game->mlx, "rec/empty.xpm",
+			&size, &size);
+	if (!game->wall || !game->empty || !game->player || !game->exit
+		|| !game->collectible)
 		print_error("Failed to load textures.");
 }
 
-void	put_tile_to_window(t_game *game, int x, int y, void *tile)
-{
-	mlx_put_image_to_window(game->mlx, game->win, tile,
-		x * game->tile_size, y * game->tile_size);
-}
 void	map_rendder(t_game *game)
 {
 	int	y;
 	int	x;
-	
+
 	y = 0;
-	mlx_clear_window(game->mlx,game->win);
-	while(y < game->map_height)
+	mlx_clear_window(game->mlx, game->win);
+	while (y < game->map_height)
 	{
 		x = 0;
 		while (x < game->map_width)
 		{
 			if (game->map[y][x] == '1')
-					put_tile_to_window(game, x, y, game->wall);
+				put_tile_to_window(game, x, y, game->wall);
 			else if (game->map[y][x] == '0')
 				put_tile_to_window(game, x, y, game->empty);
 			else if (game->map[y][x] == 'P')
@@ -58,6 +58,7 @@ void	map_rendder(t_game *game)
 		y++;
 	}
 }
+
 int	close_game(t_game *game)
 {
 	if (game->wall)
@@ -74,22 +75,24 @@ int	close_game(t_game *game)
 		mlx_destroy_window(game->mlx, game->win);
 	exit(EXIT_SUCCESS);
 }
-int	handle_keypress(int key, t_game *game)
+
+int	handle_keypress(int keycode, t_game *game)
 {
-	if (key == 53)
+	if (keycode == ESC)
 		close_game(game);
-	else if (key == 123)
+	else if (keycode == LEFT || keycode == 65361)
 		move_player(game, game->player_x - 1, game->player_y);
-	else if (key == 124)
+	else if (keycode == RIGHT || keycode == 65363)
 		move_player(game, game->player_x + 1, game->player_y);
-	else if (key == 126)
+	else if (keycode == UP || keycode == 65362)
 		move_player(game, game->player_x, game->player_y - 1);
-	else if (key == 125)
+	else if (keycode == DOWN || keycode == 65364)
 		move_player(game, game->player_x, game->player_y + 1);
 	return (0);
 }
+
 void	handle_events(t_game *game)
 {
 	mlx_hook(game->win, 2, 1L << 0, handle_keypress, game);
-	mlx_hook(game->win, 17, 0L << 0, close_game, game);
+	mlx_hook(game->win, 17, 0L, close_game, game);
 }

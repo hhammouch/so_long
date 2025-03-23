@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 03:51:20 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/21 23:35:18 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/22 23:50:58 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_error(char *msg)
 {
-	ft_printf("\033[1;31mError: 🚨🚨🚨🚨🚨🚨🚨\n%s\n\033[0m", msg);
+	ft_printf("\033[1;31mError\n%s\n\033[0m", msg);
 	exit(1);
 }
 
@@ -30,6 +30,12 @@ void	free_map(char **map)
 	free(map);
 }
 
+void	put_tile_to_window(t_game *game, int x, int y, void *tile)
+{
+	mlx_put_image_to_window(game->mlx, game->win, tile,
+		x * game->tile_size, y * game->tile_size);
+}
+
 void	count_collectibles(t_game *game)
 {
 	int	y;
@@ -41,13 +47,14 @@ void	count_collectibles(t_game *game)
 		x = 0;
 		while (x < game->map_width)
 		{
-			if (game->map[y][x] == 'c')
-				game->collectible++;
+			if (game->map[y][x] == 'C')
+				game->collectibles++;
 			x++;
 		}
 		y++;
 	}
 }
+
 void	player_position(t_game *game)
 {
 	int	x;

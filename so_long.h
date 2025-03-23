@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 03:51:40 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/22 03:07:15 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/23 00:08:49 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,15 @@
 # include "ft_printf/ft_printf.h"
 # include "get_next_line/get_next_line_bonus.h"
 # include "libft/libft.h"
-# include "mlx/mlx.h"
+# include <mlx.h>
 
+# define UP 119
+# define DOWN 115
+# define RIGHT 100
+# define LEFT 97
+# define ESC 65307
 
-typedef	struct so_game
+typedef struct so_game
 {
 	char	**map;
 	void	*mlx;
@@ -39,10 +44,8 @@ typedef	struct so_game
 	int		moves;
 	int		player_x;
 	int		player_y;
-	int		collectibles;
-	
+	int		collectibles;	
 }	t_game;
-
 
 void	print_error(char *msg);
 char	**read_map(const char *file_path);
@@ -64,6 +67,6 @@ void	handle_events(t_game *game);
 int		close_game(t_game *game);
 int		handle_keypress(int key, t_game *game);
 void	move_player(t_game *game, int new_x, int new_y);
-
+void	put_tile_to_window(t_game *game, int x, int y, void *tile);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 23:28:33 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/21 19:35:55 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/22 23:42:48 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ static void	flood_fill(char **map, int row, int col, int *items)
 	if (map[row][col] == 'C' || map[row][col] == 'E')
 		(*items)++;
 	map[row][col] = 'V';
-	flood_fill(map ,row + 1, col, items);
-	flood_fill(map ,row - 1, col, items);
-	flood_fill(map ,row, col + 1, items);
-	flood_fill(map ,row, col - 1, items);
+	flood_fill(map, row + 1, col, items);
+	flood_fill(map, row - 1, col, items);
+	flood_fill(map, row, col + 1, items);
+	flood_fill(map, row, col - 1, items);
 }
 
 static char	**copy_map(char **map)
@@ -31,7 +31,7 @@ static char	**copy_map(char **map)
 	int		i;
 
 	i = 0;
-	while(map[i])
+	while (map[i])
 		i++;
 	m_copy = malloc(sizeof(char *) * (i + 1));
 	if (!m_copy)
@@ -42,7 +42,7 @@ static char	**copy_map(char **map)
 		m_copy[i] = ft_strdup(map[i]);
 		if (!m_copy)
 		{
-			while(--i >= 0)
+			while (--i >= 0)
 				free(m_copy[i]);
 			free(m_copy);
 			print_error("Allocation failed");
@@ -67,12 +67,12 @@ int	is_path_accessible(char **map, int y, int x, int itemes)
 	while (map[y])
 	{
 		x = 0;
-		while(map[y][x])
+		while (map[y][x])
 		{
 			if (map[y][x] == 'P')
 			{
 				flood_fill(map_copy, y, x, &itemes);
-				break;
+				break ;
 			}
 			x++;
 		}

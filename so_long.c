@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 03:43:17 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/22 20:30:59 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/25 14:09:53 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ int	main(int argc, char **argv)
 	game.map = read_map(argv[1]);
 	valid_map(game.map);
 	init_game(&game);
-	map_rendder(&game);
-	handle_events(&game);
-	mlx_loop(game.mlx);
 	free_map(game.map);
 	return (0);
 }

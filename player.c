@@ -6,11 +6,23 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 00:03:10 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/23 00:05:32 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/25 14:37:38 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	game_draw_collectibles(t_game *game)
+{
+	char	*str;
+
+	str = ft_itoa(game->moves);
+	if (!str)
+		print_error("Failed to allocate memory.");
+	mlx_string_put(game->mlx, game->win, 10, 20, 0x00FF00, "Moves : ");
+	mlx_string_put(game->mlx, game->win, 130, 20, 0x00FF00, str);
+	free(str);
+}
 
 void	handle_collectible(t_game *game, int new_x, int new_y)
 {
@@ -49,6 +61,7 @@ void	move_player(t_game *game, int new_x, int new_y)
 	game->player_y = new_y;
 	game->map[new_y][new_x] = 'P';
 	game->moves++;
-	ft_printf("\033[1;32mMoves: \033[0m\033[1;34m%d\033[0m\n", game->moves);
+	//ft_printf("\033[1;32mMoves: \033[0m\033[1;34m%d\033[0m\n", game->moves);
 	map_rendder(game);
+	game_draw_collectibles(game);
 }

@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 00:04:25 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/23 19:31:24 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/26 00:36:07 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,14 @@ int	close_game(t_game *game)
 		mlx_destroy_image(game->mlx, game->collectible);
 	if (game->exit)
 		mlx_destroy_image(game->mlx, game->exit);
+	if (game->empty)
+		mlx_destroy_image(game->mlx, game->empty);
 	if (game->map)
 		free_map(game->map);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
 	exit(EXIT_SUCCESS);
 }
 

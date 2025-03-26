@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 22:39:42 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/22 23:56:41 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/25 15:38:40 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,5 @@ void	valid_map(char **map)
 	}
 	components_check(map);
 	if (!is_path_accessible(map, 0, 0, 0))
-		print_error("annot reach all collectibles or exit");
+		print_error("Cannot reach all collectibles or exit");
 }

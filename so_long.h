@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 03:51:40 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/25 14:32:59 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/25 18:15:27 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,5 @@ int		close_game(t_game *game);
 int		handle_keypress(int key, t_game *game);
 void	move_player(t_game *game, int new_x, int new_y);
 void	put_tile_to_window(t_game *game, int x, int y, void *tile);
-void	game_draw_collectibles(t_game *game);
+void	draw_moves(t_game *game);
 #endif

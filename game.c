@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 00:04:25 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/26 00:36:07 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/27 13:52:48 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	map_rendder(t_game *game)
 	int	x;
 
 	y = 0;
-	mlx_clear_window(game->mlx, game->win);
 	while (y < game->map_height)
 	{
 		x = 0;

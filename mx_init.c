@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 23:20:47 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/26 00:12:12 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/27 14:17:14 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ void	init_game(t_game *game)
 	load_textures(game);
 	map_rendder(game);
 	handle_events(game);
-	mlx_string_put(game->mlx, game->win, 10, 20, 0x00FF00, "Moves :     0");
+	mlx_string_put(game->mlx, game->win, 10, 20, 0x00FF00, "Moves :      0");
 	mlx_loop(game->mlx);
 }

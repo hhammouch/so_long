@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 03:51:40 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/25 18:15:27 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:22:24 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include "ft_printf/ft_printf.h"
-# include "get_next_line/get_next_line_bonus.h"
+# include "gnl/get_next_line_bonus.h"
 # include "libft/libft.h"
 # include <mlx.h>
 

@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 23:00:38 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/27 13:01:24 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/30 01:13:14 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,23 @@ void	path_check(char *path)
 	if (i < 5 || path[i - 1] != 'r' || path[i - 2] != 'e' || path[i - 3] != 'b'
 		|| path[i - 4] != '.' || path[i - 5] == '/')
 		print_error("Invalid map file extension.");
+}
+
+void	check_windows_size(t_game *game)
+{
+	int (s_w), (s_h), (map_w), (map_h);
+	map_w = game->map_width;
+	map_h = game->map_height;
+	s_w = 0;
+	s_h = 0;
+	mlx_get_screen_size(game->mlx, &s_w, &s_h);
+	if ((map_w * 32) > s_w || (map_h * 32) > s_h)
+	{
+		free_map(game->map);
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+		print_error("Windows size exceeds screen dimension\n");
+	}
 }
 
 char	*read_file(int fd)
@@ -43,7 +60,7 @@ char	*read_file(int fd)
 			free(temp);
 		}
 		if (line[0] == '\n' || line[0] == '\0')
-			print_error("Map is not rectangular.");
+			free_exit("Map is not rectangular.", line, temp_map);
 		free(line);
 		line = get_next_line(fd);
 	}

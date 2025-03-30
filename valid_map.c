@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 22:39:42 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/27 13:29:04 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/30 01:27:23 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	components_count(char **map, int *c_count, int *p_count, int *e_count)
 	}
 }
 
-void	components_check(char **map)
+void	components_check(char **map, t_game *game)
 {
 	int	collectible_count;
 	int	player_count;
@@ -48,11 +48,11 @@ void	components_check(char **map)
 
 	components_count(map, &collectible_count, &player_count, &exit_count);
 	if (player_count != 1)
-		print_error("Map must have exactly one player (P)");
+		er_ex("Map must have exactly one player (P)", game);
 	if (collectible_count < 1)
-		print_error("Map must have at lest one collectible (C)");
+		er_ex("Map must have at lest one collectible (C)", game);
 	if (exit_count != 1)
-		print_error("Map must have exactly one exit (E)");
+		er_ex("Map must have exactly one exit (E)", game);
 }
 
 int	is_wall(const char *line)
@@ -69,7 +69,7 @@ int	is_wall(const char *line)
 	return (1);
 }
 
-void	valid_map(char **map)
+void	valid_map(char **map, t_game *game)
 {
 	int	i;
 	int	row_len;
@@ -86,12 +86,13 @@ void	valid_map(char **map)
 	while (map[i])
 	{
 		if ((i == 0 || map[i + 1] == NULL) && !is_wall(map[i]))
-			print_error("Top  or Bottom row is not properly enclosed by walls");
+			er_ex("Top or Bottom row is not properly enclosed by walls", game);
 		if (map[i][0] != '1' || map[i][row_len - 1] != '1')
-			print_error("Left or Right side wall is missing at row index");
+			er_ex("Left or Right side wall is missing at row index", game);
 		i++;
 	}
-	components_check(map);
+	components_check(map, game);
+	check_windows_size(game);
 	if (!is_path_accessible(map, 0, 0, 0))
-		print_error("Cannot reach all collectibles or exit");
+		er_ex("Cannot reach all collectibles or exit", game);
 }

@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 03:51:40 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/26 15:22:24 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/30 01:31:13 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ char	**read_map(const char *file_path);
 char	*read_file(int fd);
 void	path_check(char *path);
 int		is_wall(const char *line);
-void	valid_map(char **map);
-void	components_check(char **map);
+void	valid_map(char **map, t_game *game);
+void	components_check(char **map, t_game *game);
 void	components_count(char **map, int *c_count, int *p_count, int *e_count);
 int		is_path_accessible(char **map, int y, int x, int itemes);
 void	free_map(char **map);
@@ -69,4 +69,8 @@ int		handle_keypress(int key, t_game *game);
 void	move_player(t_game *game, int new_x, int new_y);
 void	put_tile_to_window(t_game *game, int x, int y, void *tile);
 void	draw_moves(t_game *game);
+void	check_windows_size(t_game *game);
+void	er_ex(char *msg, t_game *game);
+void	free_exit(char *msg, char *line, char *temp);
+
 #endif

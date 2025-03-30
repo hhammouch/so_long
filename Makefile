@@ -8,14 +8,12 @@ LIBFT_LIB   = $(LIBFT_DIR)/libft.a
 INCLUDES    = -I$(LIBFT_DIR) -I$(FT_PRINTF_DIR)
 MLX_FLAGS   = -Lminilibx-linux -lmlx_Linux -lX11 -lXext
 SRC         = so_long.c gnl/get_next_line_bonus.c gnl/get_next_line_utils_bonus.c \
-			utils.c map_parsing.c mx_init.c player.c fill.c game.c valid_map.c\
-			
-OBJS        = $(SRC:.c=.o)
+			utils.c map_parsing.c mx_init.c player.c fill.c game.c valid_map.c errors.c \
 
 all: $(LIBFT_LIB) $(FT_PRINTF) $(NAME)
 
-$(NAME): $(LIBFT_LIB) $(FT_PRINTF) $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) $(LIBFT_LIB) $(FT_PRINTF) -o $(NAME)
+$(NAME): $(LIBFT_LIB) $(FT_PRINTF) 
+	@$(CC) $(CFLAGS) $(SRC) $(MLX_FLAGS) $(LIBFT_LIB) $(FT_PRINTF) -o $(NAME)
 
 
 $(LIBFT_LIB):
@@ -25,7 +23,6 @@ $(FT_PRINTF):
 	@$(MAKE) -C $(FT_PRINTF_DIR)
 
 clean:
-	@rm -f $(OBJS)
 	@$(MAKE) clean -C $(LIBFT_DIR)
 	@$(MAKE) clean -C $(FT_PRINTF_DIR)
 

@@ -6,14 +6,14 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 12:36:31 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/01/20 09:42:27 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/30 01:04:13 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 5
+#  define BUFFER_SIZE 1
 # endif
 # define FD_MAX 1024
 # include <stdlib.h>

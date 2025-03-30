@@ -6,17 +6,11 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 03:51:20 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/22 23:50:58 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/30 01:06:46 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	print_error(char *msg)
-{
-	ft_printf("\033[1;31mError\n%s\n\033[0m", msg);
-	exit(1);
-}
 
 void	free_map(char **map)
 {

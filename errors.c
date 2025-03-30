@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/15 03:43:17 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/29 17:16:03 by hhammouc         ###   ########.fr       */
+/*   Created: 2025/03/30 01:06:15 by hhammouc          #+#    #+#             */
+/*   Updated: 2025/03/30 01:27:57 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char **argv)
+void	print_error(char *msg)
 {
-	t_game	game;
+	ft_printf("\033[1;31mError\n%s\n\033[0m", msg);
+	exit(1);
+}
 
-	if (argc != 2)
-		print_error("\033[1;33mUsage:\033[1;37m./so_long <map.ber>");
-	game.map = read_map(argv[1]);
-	init_game(&game);
-	free_map(game.map);
-	return (0);
+void	er_ex(char *msg, t_game *game)
+{
+	ft_printf("\033[1;31mError\n%s\n\033[0m", msg);
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
+	free_map(game->map);
+	exit(1);
+}
+
+void	free_exit(char *msg, char *line, char *temp)
+{
+	ft_printf("\033[1;31mError\n%s\n\033[0m", msg);
+	free(line);
+	free(temp);
+	exit(1);
 }

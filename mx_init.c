@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 23:20:47 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/27 14:17:14 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/29 16:12:16 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	init_game(t_game *game)
 	game->map_width = ft_strlen(game->map[0]);
 	game->collectibles = 0;
 	game->moves = 0;
+	valid_map(game->map, game);
 	count_collectibles(game);
 	player_position(game);
 	game->win = mlx_new_window(game->mlx, game->map_width * game->tile_size,

@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 03:51:20 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/30 01:06:46 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/30 17:50:08 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,5 @@ void	player_position(t_game *game)
 		}
 		y++;
 	}
-	print_error("Player position not found in map.");
+	er_ex("Player position not found in map.", game);
 }

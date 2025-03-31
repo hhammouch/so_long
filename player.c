@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 00:03:10 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/27 12:34:37 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/30 20:58:52 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	draw_moves(t_game *game)
 
 	str = ft_itoa(game->moves);
 	if (!str)
-		print_error("Failed to allocate memory.");
+		free_textures("Failed to allocate memory.", game);
 	mlx_string_put(game->mlx, game->win, 10, 20, 0x00FF00, "Moves : ");
 	mlx_string_put(game->mlx, game->win, 130, 20, 0x00FF00, str);
 	free(str);

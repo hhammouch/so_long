@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 00:04:25 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/27 13:52:48 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/30 17:35:15 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	load_textures(t_game *game)
 			&size, &size);
 	if (!game->wall || !game->empty || !game->player || !game->exit
 		|| !game->collectible)
-		print_error("Failed to load textures.");
+		free_textures("Failed to load textures.", game);
 }
 
 void	map_rendder(t_game *game)

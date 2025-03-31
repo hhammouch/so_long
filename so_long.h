@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 03:51:40 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/30 01:31:13 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/31 03:56:16 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,19 @@ typedef struct so_game
 	int		collectibles;	
 }	t_game;
 
+typedef struct s_counts
+{
+	int	c_count;
+	int	p_count;
+	int	e_count;
+}	t_counts;
+
+typedef struct s_xy
+{
+	int	x;
+	int	y;
+}	t_xy;
+
 void	print_error(char *msg);
 char	**read_map(const char *file_path);
 char	*read_file(int fd);
@@ -54,8 +67,8 @@ void	path_check(char *path);
 int		is_wall(const char *line);
 void	valid_map(char **map, t_game *game);
 void	components_check(char **map, t_game *game);
-void	components_count(char **map, int *c_count, int *p_count, int *e_count);
-int		is_path_accessible(char **map, int y, int x, int itemes);
+void	components_count(char **map, t_counts *counts, t_game *game);
+int		is_path_accessible(char **map, t_xy *tr, t_game *game, int itemes);
 void	free_map(char **map);
 void	init_game(t_game *game);
 void	count_collectibles(t_game *game);
@@ -72,5 +85,6 @@ void	draw_moves(t_game *game);
 void	check_windows_size(t_game *game);
 void	er_ex(char *msg, t_game *game);
 void	free_exit(char *msg, char *line, char *temp);
+void	free_textures(char *msg, t_game *game);
 
 #endif

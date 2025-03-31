@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 23:20:47 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/29 16:12:16 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/30 18:04:46 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	init_game(t_game *game)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)
-		print_error("Failed to initialize MiniLibX.");
+		er_ex("Failed to initialize MiniLibX.", game);
 	game->tile_size = 32;
 	game->map_height = 0;
 	while (game->map[game->map_height])
@@ -30,7 +30,7 @@ void	init_game(t_game *game)
 	game->win = mlx_new_window(game->mlx, game->map_width * game->tile_size,
 			game->map_height * game->tile_size, "So Long");
 	if (!game->win)
-		print_error("Failed to create a game window.");
+		er_ex("Failed to create a game window.", game);
 	load_textures(game);
 	map_rendder(game);
 	handle_events(game);

@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 23:00:38 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/30 01:13:14 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/30 17:48:30 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,7 @@ void	check_windows_size(t_game *game)
 	s_h = 0;
 	mlx_get_screen_size(game->mlx, &s_w, &s_h);
 	if ((map_w * 32) > s_w || (map_h * 32) > s_h)
-	{
-		free_map(game->map);
-		mlx_destroy_display(game->mlx);
-		free(game->mlx);
-		print_error("Windows size exceeds screen dimension\n");
-	}
+		er_ex("Windows size exceeds screen dimension\n", game);
 }
 
 char	*read_file(int fd)

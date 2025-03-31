@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 23:28:33 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/27 13:27:36 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/31 03:57:55 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,14 @@ static char	**copy_map(char **map)
 {
 	char	**m_copy;
 	int		i;
+	t_game	game;
 
 	i = 0;
 	while (map[i])
 		i++;
 	m_copy = malloc(sizeof(char *) * (i + 1));
 	if (!m_copy)
-		print_error("Allocation failed");
+		er_ex("Allocation failed", &game);
 	i = 0;
 	while (map[i])
 	{
@@ -45,7 +46,7 @@ static char	**copy_map(char **map)
 			while (--i >= 0)
 				free(m_copy[i]);
 			free(m_copy);
-			print_error("Allocation failed");
+			er_ex("Allocation failed", &game);
 		}
 		i++;
 	}
@@ -53,30 +54,30 @@ static char	**copy_map(char **map)
 	return (m_copy);
 }
 
-int	is_path_accessible(char **map, int y, int x, int itemes)
+int	is_path_accessible(char **map, t_xy *tr, t_game *game, int itemes)
 {
-	char	**map_copy;
-	int		required_items;
-	int		c_count;
-	int		p_count;
-	int		e_count;
+	char		**map_copy;
+	t_counts	counts;
+	int			required_items;
 
+	tr->y = 0;
+	itemes = 0;
 	map_copy = copy_map(map);
-	components_count(map, &c_count, &p_count, &e_count);
-	required_items = e_count + c_count;
-	while (map[y])
+	components_count(map, &counts, game);
+	required_items = counts.e_count + counts.c_count;
+	while (map[tr->y])
 	{
-		x = 0;
-		while (map[y][x])
+		tr->x = 0;
+		while (map[tr->y][tr->x])
 		{
-			if (map[y][x] == 'P')
+			if (map[tr->y][tr->x] == 'P')
 			{
-				flood_fill(map_copy, y, x, &itemes);
+				flood_fill(map_copy, tr->y, tr->x, &itemes);
 				break ;
 			}
-			x++;
+			tr->x++;
 		}
-		y++;
+		tr->y++;
 	}
 	free_map(map_copy);
 	return (itemes == required_items);

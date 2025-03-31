@@ -6,34 +6,34 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 22:39:42 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/30 01:27:23 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/31 03:56:46 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	components_count(char **map, int *c_count, int *p_count, int *e_count)
+void	components_count(char **map, t_counts *counts, t_game *game)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
-	*c_count = 0;
-	*p_count = 0;
-	*e_count = 0;
+	counts->c_count = 0;
+	counts->p_count = 0;
+	counts->e_count = 0;
 	while (map[i])
 	{
 		j = 0;
 		while (map[i][j])
 		{
 			if (map[i][j] == 'C')
-				(*c_count)++;
+				counts->c_count++;
 			else if (map[i][j] == 'P')
-				(*p_count)++;
+				counts->p_count++;
 			else if (map[i][j] == 'E')
-				(*e_count)++;
+				counts->e_count++;
 			else if (map[i][j] != '0' && map[i][j] != '1')
-				print_error("Map contains invalid characters");
+				er_ex("Map contains invalid characters", game);
 			j++;
 		}
 		i++;
@@ -42,16 +42,14 @@ void	components_count(char **map, int *c_count, int *p_count, int *e_count)
 
 void	components_check(char **map, t_game *game)
 {
-	int	collectible_count;
-	int	player_count;
-	int	exit_count;
+	t_counts	counts;
 
-	components_count(map, &collectible_count, &player_count, &exit_count);
-	if (player_count != 1)
+	components_count(map, &counts, game);
+	if (counts.p_count != 1)
 		er_ex("Map must have exactly one player (P)", game);
-	if (collectible_count < 1)
+	if (counts.c_count < 1)
 		er_ex("Map must have at lest one collectible (C)", game);
-	if (exit_count != 1)
+	if (counts.e_count != 1)
 		er_ex("Map must have exactly one exit (E)", game);
 }
 
@@ -71,15 +69,16 @@ int	is_wall(const char *line)
 
 void	valid_map(char **map, t_game *game)
 {
-	int	i;
-	int	row_len;
+	int		i;
+	int		row_len;
+	t_xy	tr;
 
 	i = 0;
 	row_len = ft_strlen(map[i]);
 	while (map[i])
 	{
 		if ((int)ft_strlen(map[i]) != row_len)
-			print_error("Map is not rectangular.");
+			er_ex("Map is not rectangular.", game);
 		i++;
 	}
 	i = 0;
@@ -93,6 +92,6 @@ void	valid_map(char **map, t_game *game)
 	}
 	components_check(map, game);
 	check_windows_size(game);
-	if (!is_path_accessible(map, 0, 0, 0))
+	if (!is_path_accessible(map, &tr, game, 0))
 		er_ex("Cannot reach all collectibles or exit", game);
 }

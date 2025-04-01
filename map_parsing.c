@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 23:00:38 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/30 17:48:30 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/03/31 18:28:57 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,11 @@ void	path_check(char *path)
 
 void	check_windows_size(t_game *game)
 {
-	int (s_w), (s_h), (map_w), (map_h);
+	int	s_w;
+	int	s_h;
+	int	map_w;
+	int	map_h;
+
 	map_w = game->map_width;
 	map_h = game->map_height;
 	s_w = 0;

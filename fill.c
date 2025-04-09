@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 23:28:33 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/04/07 20:07:14 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:15:58 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static void	flood_fill(char **map, int row, int col, int *items)
 {
-	if (map[row][col] == '1' || map[row][col] == 'V' || map[row][col] == 'U')
+	if (map[row][col] == '1' || map[row][col] == 'V')
 		return ;
 	if (map[row][col] == 'C' || map[row][col] == 'E')
 	{
 		(*items)++;
 		if (map[row][col] == 'E')
 		{
-			map[row][col] = 'U';
+			map[row][col] = '1';
 			return ;
 		}
 	}

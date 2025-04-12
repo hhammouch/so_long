@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 00:04:25 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/30 17:35:15 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/04/09 17:04:01 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ void	load_textures(t_game *game)
 	int	size;
 
 	size = game->tile_size;
-	game->wall = mlx_xpm_file_to_image(game->mlx, "rec/wall.xpm", &size, &size);
-	game->player = mlx_xpm_file_to_image(game->mlx, "rec/player.xpm",
+	game->wall = mlx_xpm_file_to_image(game->mlx, "textures/wall.xpm", &size, &size);
+	game->player = mlx_xpm_file_to_image(game->mlx, "textures/player.xpm",
 			&size, &size);
-	game->collectible = mlx_xpm_file_to_image(game->mlx, "rec/collectible.xpm",
+	game->collectible = mlx_xpm_file_to_image(game->mlx, "textures/collectible.xpm",
 			&size, &size);
-	game->exit = mlx_xpm_file_to_image(game->mlx, "rec/exit.xpm",
+	game->exit = mlx_xpm_file_to_image(game->mlx, "textures/exit.xpm",
 			&size, &size);
-	game->empty = mlx_xpm_file_to_image(game->mlx, "rec/empty.xpm",
+	game->empty = mlx_xpm_file_to_image(game->mlx, "textures/empty.xpm",
 			&size, &size);
 	if (!game->wall || !game->empty || !game->player || !game->exit
 		|| !game->collectible)

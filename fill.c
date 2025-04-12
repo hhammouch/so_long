@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 23:28:33 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/04/09 16:15:58 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/04/12 21:48:58 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,17 @@ static void	flood_fill(char **map, int row, int col, int *items)
 	flood_fill(map, row, col - 1, items);
 }
 
-static char	**copy_map(char **map)
+static char	**copy_map(char **map, t_game *game)
 {
 	char	**m_copy;
 	int		i;
-	t_game	game;
 
 	i = 0;
 	while (map[i])
 		i++;
 	m_copy = malloc(sizeof(char *) * (i + 1));
 	if (!m_copy)
-		er_ex("Allocation failed", &game);
+		er_ex("Allocation failed", game);
 	i = 0;
 	while (map[i])
 	{
@@ -53,7 +52,7 @@ static char	**copy_map(char **map)
 			while (--i >= 0)
 				free(m_copy[i]);
 			free(m_copy);
-			er_ex("Allocation failed", &game);
+			er_ex("Allocation failed", game);
 		}
 		i++;
 	}
@@ -69,7 +68,7 @@ int	is_path_accessible(char **map, t_xy *tr, t_game *game, int itemes)
 
 	tr->y = 0;
 	itemes = 0;
-	map_copy = copy_map(map);
+	map_copy = copy_map(map, game);
 	components_count(map, &counts, game);
 	required_items = counts.e_count + counts.c_count;
 	while (map[tr->y])

@@ -6,7 +6,7 @@
 /*   By: hhammouc <hhammouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 22:39:42 by hhammouc          #+#    #+#             */
-/*   Updated: 2025/03/31 03:56:46 by hhammouc         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:53:04 by hhammouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	is_wall(const char *line)
 	return (1);
 }
 
-void	valid_map(char **map, t_game *game)
+void	 valid_map(char **map, t_game *game)
 {
 	int		i;
 	int		row_len;
